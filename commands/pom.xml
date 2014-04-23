@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2014 by Cloudsoft Corporation Limited
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.cloudsoft.brooklyn</groupId>
+        <artifactId>brooklyn-karaf</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>brooklyn-karaf-commands</artifactId>
+    <packaging>bundle</packaging>
+    <name>Brooklyn Karaf Commands</name>
+
+     <dependencies>
+        <dependency>
+            <groupId>org.apache.karaf.shell</groupId>
+            <artifactId>org.apache.karaf.shell.console</artifactId>
+            <version>${karaf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>1.2.0</version>
+            <scope>provided</scope>
+        </dependency>
+     </dependencies>
+     
+     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Import-Package>
+                            org.osgi.service.command,
+                            org.apache.felix.gogo.commands,
+                            org.apache.karaf.shell.console,
+                            net.sourceforge.buildprocess.builderaser.model*,
+                            net.sourceforge.buildprocess.builderaser.file*,
+                            org.apache.commons.vfs;version="[1,2)",
+                            *
+                        </Import-Package>
+                        <Export-Package>${pom.artifactId}*;version=${project.version}</Export-Package>
+                        <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+     </build>
+
+</project>

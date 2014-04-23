@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="brooklyn-model" interface="brooklyn.model.Loader"/>
+    
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
+        <command name="brooklyn/launch">
+            <action class="brooklyn.commands.LaunchCommand">
+                <property name="modelLoaderService" ref="brooklyn-model"/>
+            </action>
+            <completers>
+                <ref component-id="locationsCompleter"/>
+            </completers>
+        </command>
+    </command-bundle>
+    
+    <bean id="locationsCompleter" class="brooklyn.commands.LocationsCompleter">
+        <property name="modelLoaderService" ref="brooklyn-model"/>
+    </bean>
+    
+</blueprint>

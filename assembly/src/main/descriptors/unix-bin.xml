@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Copyright (c) 2010 BuildProcess
+ 
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+ 
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<assembly>
+    <id></id>
+    
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    
+    <fileSets>
+    
+        <!-- Expanded Karaf -->
+        <fileSet>
+            <directory>${basedir}/target/dependencies/unix/apache-karaf-${karaf.version}</directory>
+            <outputDirectory>/</outputDirectory>
+            <excludes>
+                <exclude>bin/**</exclude>
+                <exclude>demos/**</exclude>
+                <exclude>etc/org.apache.karaf.features.cfg</exclude>
+                <exclude>etc/org.ops4j.pax.logging.cfg</exclude>
+                <exclude>etc/users.properties</exclude>
+                <exclude>karaf-manual*</exclude>
+                <exclude>LICENSE</exclude>
+                <exclude>NOTICE</exclude>
+                <exclude>README</exclude>
+                <exclude>RELEASE-NOTES</exclude>
+                <exclude>deploy</exclude>
+            </excludes>
+        </fileSet>
+        
+        <!-- Copy license and other files from root -->
+        <fileSet>
+            <directory>${basedir}/..</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>LICENSE</include>
+                <include>NOTICE</include>
+                <include>README</include>
+            </includes>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        
+        <!-- Copy etc directory -->
+        <fileSet>
+            <directory>target/classes/etc</directory>
+            <outputDirectory>/etc</outputDirectory>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        
+        <!-- Copy sample directory -->
+        <fileSet>
+            <directory>target/classes/sample</directory>
+            <outputDirectory>/sample</outputDirectory>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        
+        <!-- Copy features repo in the system directory -->
+        <fileSet>
+            <directory>${basedir}/target/features-repo</directory>
+            <outputDirectory>system</outputDirectory>
+        </fileSet>
+    
+    </fileSets>
+    
+    <files>
+    
+        <!-- Copy builderaser script and turn it as executable -->
+        <file>
+            <source>${basedir}/target/classes/bin/builderaser</source>
+            <outputDirectory>/bin/</outputDirectory>
+            <fileMode>0755</fileMode>
+            <lineEnding>unix</lineEnding>
+        </file>
+        
+        <!-- Copy the branding jar -->
+        <file>
+            <source>${basedir}/target/dependencies/builderaser.jar</source>
+            <outputDirectory>/lib/</outputDirectory>
+            <fileMode>0644</fileMode>
+        </file>
+        
+        <!-- Copy the builderaser features descriptor -->
+        <file>
+            <source>${basedir}/target/classes/features.xml</source>
+            <outputDirectory>system/net/sourceforge/buildprocess/builderaser/${artifactId}/${version}</outputDirectory>
+            <destName>${artifactId}-${version}-features.xml</destName>
+            <fileMode>0644</fileMode>
+            <lineEnding>unix</lineEnding>
+        </file>
+        
+    </files>
+    
+</assembly>
