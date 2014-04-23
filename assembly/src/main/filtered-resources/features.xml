@@ -36,7 +36,7 @@
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-collections/${commons-collections.bundle.version}</bundle>
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.quartz/${quartz.bundle.version}</bundle>
 
-        <bundle>mvn:io.cloudsoft.brooklyn/brooklyn-karaf-commands/${version}</bundle>
+        <bundle>mvn:io.brooklyn/brooklyn-karaf-commands/${version}</bundle>
     </feature>
 
 </features>
