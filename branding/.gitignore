@@ -5,6 +5,7 @@
 
 # Build Files #
 target/*
+*.bak
 
 # Package Files #
 *.class
